@@ -14,3 +14,32 @@ body {
     color-scheme: dark;
   }
 }
+
+/* ---- Imbencible minimal B/N ---- */
+.imb-main { color:#e5e5e5; background:#0a0a0a; min-height:100vh; }
+.imb-hero { position:relative; overflow:hidden; }
+.imb-hero-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.35; filter:grayscale(100%); }
+.imb-hero-inner { position:relative; max-width:960px; margin:0 auto; padding:96px 16px; }
+.imb-pill { display:inline-block; font-size:12px; letter-spacing:.08em; text-transform:uppercase; border:1px solid #3a3a3a; background:#00000066; padding:6px 12px; border-radius:999px; }
+.imb-title { margin:16px 0 0; font-size:48px; font-weight:800; }
+.imb-sub { margin:12px 0 0; color:#c9c9c9; font-size:18px; }
+.imb-sub2 { margin:4px 0 0; color:#a6a6a6; }
+.imb-card { margin-top:24px; border:1px solid #2a2a2a; background:#0000007a; border-radius:16px; padding:16px; }
+.imb-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.imb-chip { background:#121212; border:1px solid #2a2a2a; padding:6px 10px; border-radius:999px; font-size:13px; color:#cfcfcf; }
+.imb-link { text-decoration:underline; text-underline-offset:3px; }
+.imb-genres { margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+.imb-genre { border:1px solid #2a2a2a; background:#0f0f0f; padding:6px 10px; border-radius:999px; font-size:12px; color:#c3c3c3; }
+.imb-cta { margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; }
+.imb-btn { border:1px solid #2a2a2a; padding:10px 14px; border-radius:12px; color:#e5e5e5; text-decoration:none; display:inline-block; }
+.imb-btn-primary { background:#fff; color:#000; border-color:#fff; }
+.imb-quote { margin-top:16px; border:1px solid #2a2a2a; background:#0f0f0f; border-radius:16px; padding:16px; color:#c9c9c9; }
+.imb-section { max-width:960px; margin:0 auto; padding:40px 16px; }
+.imb-box { margin-top:12px; border:1px solid #2a2a2a; background:#0f0f0f; border-radius:12px; width:100%; aspect-ratio:16/9; }
+.imb-form { margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; }
+.imb-input { flex:1; min-width:240px; background:#0f0f0f; color:#e5e5e5; border:1px solid #2a2a2a; border-radius:12px; padding:10px 12px; }
+.imb-footer { border-top:1px solid #1a1a1a; background:#0d0d0d; display:flex; justify-content:space-between; gap:12px; padding:20px 16px; max-width:960px; margin:0 auto; color:#a6a6a6; }
+.imb-nav { display:flex; gap:12px; }
+.imb-footer a { color:#bdbdbd; text-decoration:none; }
+.imb-footer a:hover { color:#fff; text-decoration:underline; text-underline-offset:3px; }
+
