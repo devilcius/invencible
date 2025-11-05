@@ -4,11 +4,14 @@
   "main": "./workers/app.ts",
   "compatibility_date": "2025-04-01",
   "compatibility_flags": ["nodejs_compat"],
-  "observability": {
-    "enabled": true
-  },
+  "observability": { "enabled": true },
   "upload_source_maps": true,
   "vars": {
     "VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
-  }
+  },
+  "routes": [
+    { "pattern": "imbencible.com/*", "zone_name": "imbencible.com" },
+    { "pattern": "www.imbencible.com/*", "zone_name": "imbencible.com" }
+  ],
+  "workers_dev": true
 }
