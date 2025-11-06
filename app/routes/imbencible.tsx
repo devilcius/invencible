@@ -1,17 +1,78 @@
 import React from "react";
 
-// DJ Imbencible — Minimal, punchy landing for a one‑off session
-// - Drop into any React app (Vite/CRA/Next/Remix). Works great on Cloudflare Pages.
-// - Tailwind classes used for quick styling (optional). If you do not use Tailwind, replace classes with your CSS.
-// - Replace placeholders in EVENT block below.
-// - Optional: wire the CTA to Instagram, a Mailto, or a Workers KV RSVP endpoint later.
+function Carousel({ covers }) {
+  const [index, setIndex] = React.useState(0);
+  const total = covers.length;
+
+  const prev = () => setIndex((i) => (i - 1 + total) % total);
+  const next = () => setIndex((i) => (i + 1) % total);
+
+  const current = covers[index];
+
+  return (
+    <div className="relative">
+      {/* Image container with fixed height and transparent background */}
+      <div className="flex h-[60vh] items-center justify-center bg-transparent">
+        <img
+          src={current.src}
+          alt={current.alt}
+          className="max-h-full w-auto object-contain transition-opacity duration-500"
+          draggable={false}
+        />
+      </div>
+
+      {/* Controls */}
+      <button
+        onClick={prev}
+        aria-label="Anterior"
+        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-neutral-700/70 bg-black/50 px-3 py-2 text-neutral-200 backdrop-blur hover:bg-black/70"
+      >
+        ‹
+      </button>
+      <button
+        onClick={next}
+        aria-label="Siguiente"
+        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-neutral-700/70 bg-black/50 px-3 py-2 text-neutral-200 backdrop-blur hover:bg-black/70"
+      >
+        ›
+      </button>
+
+      {/* Caption + controls */}
+      <div className="flex flex-col items-start gap-3 p-6 md:flex-row md:items-center md:justify-between md:p-8">
+        <div>
+          <h6 className="mt-1 text-lg font-semibold text-neutral-100">
+            {current.title}
+          </h6>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1">
+            {covers.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                aria-label={`Ir a portada ${i + 1}`}
+                className={[
+                  "h-2.5 w-2.5 rounded-full border border-neutral-600 transition-colors",
+                  i === index
+                    ? "bg-neutral-200"
+                    : "bg-neutral-800 hover:bg-neutral-700",
+                ].join(" ")}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ImbencibleLanding() {
   // ==== EVENT CONFIG (edit me) =============================================
   const EVENT = {
     title: "DJ Imbencible — Talleres Palermo",
-    dateHuman: "Sábado, 15 de noviembre · 22:30",
-    dateISO: "2025-11-15T22:30:00+01:00",
+    dateHuman: "Sábado, 15 de noviembre · 22:00",
+    dateISO: "2025-11-15T22:00:00+01:00",
     venue: "Talleres Palermo (Las Palmas)",
     address: "Las Palmas",
     heroAlt: "DJ Imbencible empujando un carrito en el supermercado (B/N)",
@@ -39,6 +100,24 @@ export default function ImbencibleLanding() {
     "Se le ha visto circular por Canillejas con un carrito lleno de hits improbables.";
   const TAGLINE_SECONDARY =
     "Pincha lo que otros olvidaron, mezcla lo que pocos se atrevieron y despacha como si el algoritmo no existiera.";
+
+  const COVERS = [
+    {
+      src: "/imbencible_london-calling.jpeg",
+      title: "The Clash — London Calling (1979)",
+      alt: "Portada de London Calling de The Clash",
+    },
+    {
+      src: "/imbencible_milo.jpg",
+      title: "Descendents — Milo Goes to College (1982)",
+      alt: "Portada de Milo Goes to College de Descendents",
+    },
+    {
+      src: "/imbencible_velvet.jpg",
+      title: "The Velvet Underground & Nico (1967)",
+      alt: "Portada de The Velvet Underground & Nico",
+    },
+  ];
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100 selection:bg-neutral-800">
@@ -72,11 +151,11 @@ export default function ImbencibleLanding() {
             {/* Pull-quote */}
             <blockquote className="rounded-2xl border border-neutral-800 bg-neutral-900/60 p-5 text-neutral-300">
               <p className="text-lg italic">
-                “Mitad Sócrates, mitad profeta del error.”
+                “Mitad iluminado, mitad profeta del error"
               </p>
               <p className="mt-2 text-sm text-neutral-400">
-                Cree en una sola religión: que todo tema, si suena en el momento
-                justo, es verdad.
+                Cree en un único dogma: todo tema, si suena en el momento justo,
+                es verdad.
               </p>
             </blockquote>
           </div>
@@ -107,36 +186,20 @@ export default function ImbencibleLanding() {
         </div>
       </div>
 
-      {/* POSTER SECTION */}
-      <section id="poster" className="mx-auto max-w-5xl px-4 pb-20">
+      {/* COVERS CAROUSEL */}
+      <section id="covers" className="mx-auto max-w-5xl px-4 pb-20">
         <div className="rounded-2xl border border-neutral-800 bg-black/40 overflow-hidden shadow-xl">
-          <img
-            src={EVENT.posterUrl}
-            alt="Cartel DJ Imbencible — Goes to Talleres Palermo"
-            className="w-full object-contain bg-white"
-          />
-
-          <div className="p-6 md:p-8">
+          <div className="p-6 md:p-8 flex items-center justify-between">
             <h5 className="text-2xl font-extrabold tracking-tight">
-              El cartel que no pedías, pero necesitabas
+              Clásicos en rotación
             </h5>
-
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <a
-                href={EVENT.posterUrl}
-                download
-                className="rounded-xl bg-white px-4 py-2 font-semibold text-black shadow hover:translate-y-0.5 hover:shadow-lg active:translate-y-[1px]"
-              >
-                Descargar póster
-              </a>
-              <a
-                href="#opiniones"
-                className="rounded-xl border border-neutral-700 px-4 py-2 text-neutral-200 hover:bg-neutral-900"
-              >
-                Opiniones
-              </a>
-            </div>
+            {/* opcional: contador */}
+            <span className="text-sm text-neutral-400">
+              {/* se actualizará vía state más abajo */}
+            </span>
           </div>
+
+          <Carousel covers={COVERS} />
         </div>
       </section>
 
@@ -153,11 +216,11 @@ export default function ImbencibleLanding() {
               a: "— Un algoritmo en paro",
             },
             {
-              q: "“Por fin alguien que no cedió a la tentación de poner Despacito.”",
+              q: "“Por fin alguien que no cedió a la tentación de poner [censurado].”",
               a: "— Camarero agradecido",
             },
             {
-              q: "“Metió C86 en una pista y nadie pidió la hoja de reclamaciones.”",
+              q: "“Metió twee punk en una pista y nadie pidió la hoja de reclamaciones.”",
               a: "— Melómano incrédulo",
             },
             {
