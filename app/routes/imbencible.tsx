@@ -232,7 +232,7 @@ export default function ImbencibleLanding() {
               a: "— Camarero agradecido",
             },
             {
-              q: "“Metió twee punk en una pista y nadie pidió la hoja de reclamaciones.”",
+              q: "“Metió hardcore twee punk en una pista y nadie pidió la hoja de reclamaciones.”",
               a: "— Melómano incrédulo",
             },
             {
@@ -254,7 +254,7 @@ export default function ImbencibleLanding() {
       <footer className="border-t border-neutral-900/60 bg-black/30">
         <div className="mx-auto max-w-5xl px-4 py-8">
           <p className="text-sm text-neutral-400">
-            © {new Date().getFullYear()} DJ Imbencible — Talleres Palermo, 15 de
+            © {new Date().getFullYear()} DJ Imbencible
             noviembre.
           </p>
         </div>
