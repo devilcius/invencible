@@ -7,7 +7,8 @@
   "observability": { "enabled": true },
   "upload_source_maps": true,
   "vars": {
-    "VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare"
+    "VALUE_FROM_CLOUDFLARE": "Hello from Cloudflare",
+    "NODE_ENV": "production"
   },
   "routes": [
     { "pattern": "imbencible.com/*", "zone_name": "imbencible.com" },
