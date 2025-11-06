@@ -1,4 +1,5 @@
 import React from "react";
+import { ImbencibleQuiz } from "./quiz";
 
 function Carousel({ covers }) {
   const [index, setIndex] = React.useState(0);
@@ -208,9 +209,14 @@ export default function ImbencibleLanding() {
           <Carousel covers={COVERS} />
         </div>
       </section>
+        <ImbencibleQuiz />
+
 
       {/* TESTIMONIOS ABSURDOS */}
       <section id="opiniones" className="mx-auto max-w-5xl px-4 pb-24">
+            <h5 className="text-2xl font-extrabold tracking-tight mb-6">
+              Dicen por ahí…
+            </h5>        
         <div className="grid gap-4 md:grid-cols-3">
           {[
             {
