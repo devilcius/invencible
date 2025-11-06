@@ -117,6 +117,12 @@ export default function ImbencibleLanding() {
       title: "The Velvet Underground & Nico (1967)",
       alt: "Portada de The Velvet Underground & Nico",
     },
+    {
+      src: "/imbencible_pistols.png",
+      title: "Never Mind the Bollocks (1977)",
+      alt: "Portada de Never Mind the Bollocks de Sex Pistols",
+
+    }
   ];
 
   return (
