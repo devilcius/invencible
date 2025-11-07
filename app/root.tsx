@@ -27,41 +27,42 @@ export const links: Route.LinksFunction = () => [
 
 // Default meta (root-level). Route pages can override with their own `export const meta = () => [...]`
 export const meta: Route.MetaFunction = () => [
-  { title: "DJ Imbencible — Never Mind the Algorithms" },
+  { title: "DJ Imbencible — Que el algoritmo se rinda" },
   {
     name: "description",
     content:
-      "DJ Imbencible: half enlightened, half prophet of error. Good taste isn’t dead — it’s just been dancing in strange places.",
+      "DJ Imbencible: mitad iluminado, mitad profeta del error. El buen gusto no ha muerto: solo ha estado bailando en lugares extraños.",
   },
 
   // Open Graph
   { property: "og:type", content: "website" },
-  { property: "og:title", content: "DJ Imbencible — Never Mind the Algorithms" },
+  { property: "og:title", content: "DJ Imbencible — Que el algoritmo se rinda" },
   {
     property: "og:description",
     content:
-      "Power pop, indie rock, northern soul, new wave and other improbable hits. Pincha lo que others forgot.",
+      "Power pop, indie rock, northern soul, new wave y otros hallazgos improbables. Pincha lo que otros olvidaron.",
   },
-  { property: "og:image", content: "/imbencible-dj.jpg" },
+  { property: "og:image", content: "https://imbencible.com/imbencible-dj.jpg" },
 
   // Twitter
   { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "DJ Imbencible — Never Mind the Algorithms" },
+  { name: "twitter:title", content: "DJ Imbencible — Que el algoritmo se rinda" },
   {
     name: "twitter:description",
     content:
-      "Half enlightened, half prophet of error. Good taste never died — it just changed BPM.",
+      "Mitad iluminado, mitad profeta del error. El buen gusto sigue vivo: solo cambió de BPM.",
   },
-  { name: "twitter:image", content: "/imbencible-dj.jpg" },
+  { name: "twitter:image", content: "https://imbencible.com/imbencible-dj.jpg" },
 
   // Extras
-  { name: "author", content: "DJ Imbencible (allegedly human)" },
+  { name: "author", content: "DJ Imbencible (presuntamente humano)" },
   {
     name: "keywords",
     content:
-      "DJ Imbencible, power pop, indie rock, northern soul, new wave, shoegaze, garage rock revival, C86, twee pop",
+      "DJ Imbencible, power pop, indie rock, northern soul, new wave, shoegaze, garage rock revival, C86, twee pop, buen gusto, ironía musical",
   },
 ];
+
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
