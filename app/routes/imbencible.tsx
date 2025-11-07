@@ -1,7 +1,7 @@
 import React from "react";
 import { ImbencibleQuiz } from "./quiz";
 
-function Carousel({ covers }) {
+function Carousel({ covers }: { covers: { src: string; title: string; alt: string }[] }) {
   const [index, setIndex] = React.useState(0);
   const total = covers.length;
 

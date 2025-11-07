@@ -5,12 +5,12 @@ const ARCH_TYPES = {
     title: "Arqueólogo del Ritmo",
     subtitle: "Cavas elegancia entre vinilos y rarezas con devoción",
     blurb:
-      "Sabes que la melodía adecuada puede cambiar la densidad del aire. Encuentras joyas donde otros ven polvo. Tu religión: el momento justo.",
+      "Sabes que la melodía adecuada puede cambiar la densidad del aire. Encuentras joyas donde otros ven polvo. Tu filosofía: el momento justo.",
     pill: "crate‑digger",
   },
   PRO: {
     title: "Profeta del Error",
-    subtitle: "El fallo feliz es tu instrumento de viento",
+    subtitle: "El fallo feliz es el instrumento que te da alas",
     blurb:
       "Te guía la intuición. Persigues el accidente bello, el corte inesperado, el puente que nadie vio venir. El caos, bien domado, es arte.",
     pill: "impro‑místico",
@@ -19,13 +19,13 @@ const ARCH_TYPES = {
     title: "Algoritmo con Sentimientos",
     subtitle: "Playlist warrior en proceso de emancipación",
     blurb:
-      "Aprecias el descubrimiento guiado, pero sabes cuándo salirte del carril. Estás a un par de sorpresas de la iluminación melómana.",
+      "Aprecias el descubrimiento guiado, pero sabes cuándo salirte del carril. Estás a un par de pasos de la iluminación melómana.",
     pill: "data‑lover",
   },
 };
 
 // 10 preguntas. Cada opción suma a un arquetipo (ARQ/PRO/ALG)
-const QUESTIONS = [
+const QUESTIONS: { q: string; options: { label: string; score: keyof typeof ARCH_TYPES }[] }[] = [
   {
     q: "Suena un tema que te encanta pero nadie baila. ¿Qué haces?",
     options: [
@@ -35,7 +35,7 @@ const QUESTIONS = [
         score: "PRO",
       },
       {
-        label: "Cambio a un seguro de playlist, ¡que no decaiga la pista!",
+        label: "Cambio a temazo pegadizo, ¡que no decaiga la pista!",
         score: "ALG",
       },
     ],
@@ -43,7 +43,7 @@ const QUESTIONS = [
   {
     q: "¿Qué opinas de los *temazos pegadizos*?",
     options: [
-      { label: "Uno por sesión es suficiente… si el resto es fino.", score: "ARQ" },
+      { label: "Uno por sesión es suficiente si el resto es cosa fina.", score: "ARQ" },
       { label: "Mejor desconstruirlos y construirlos de forma inesperada.", score: "PRO" },
       { label: "Son la columna vertebral del buen ambiente.", score: "ALG" },
     ],
@@ -51,7 +51,7 @@ const QUESTIONS = [
   {
     q: "El santo grial del DJ es…",
     options: [
-      { label: "Una cara‑B que suena a clásico perdido.", score: "ARQ" },
+      { label: "Una cara B que suena a clásico perdido.", score: "ARQ" },
       { label: "El cruce imposible que funciona.", score: "PRO" },
       { label: "Leer la sala y mantenerla arriba.", score: "ALG" },
     ],
@@ -106,7 +106,7 @@ const QUESTIONS = [
     q: "Si tu gusto fuese un lugar, sería…",
     options: [
       { label: "Una tienda pequeña con discos imposibles.", score: "ARQ" },
-      { label: "Un cruce de calles a las 3 AM.", score: "PRO" },
+      { label: "Un cruce de calles a las 3 AM.", score: "PRO" },
       { label: "Un club donde todos se sienten en casa.", score: "ALG" },
     ],
   },
@@ -120,7 +120,7 @@ const QUESTIONS = [
   },
 ];
 
-function Progress({ current, total }) {
+function Progress({ current, total }: { current: number; total: number }) {
   const pct = Math.round(((current + 1) / total) * 100);
   return (
     <div className="w-full">
@@ -140,7 +140,18 @@ function Progress({ current, total }) {
   );
 }
 
-function QuestionCard({ qIndex, question, onAnswer }) {
+function QuestionCard({
+  qIndex,
+  question,
+  onAnswer,
+}: {
+  qIndex: number;
+  question: {
+    q: string;
+    options: { label: string; score: keyof typeof ARCH_TYPES }[];
+  };
+  onAnswer: (score: keyof typeof ARCH_TYPES) => void;
+}) {
   return (
     <div className="rounded-2xl border border-neutral-800 bg-black/40 p-6 md:p-8">
       <h4 className="text-xl font-semibold text-neutral-100">{question.q}</h4>
@@ -164,9 +175,18 @@ function QuestionCard({ qIndex, question, onAnswer }) {
   );
 }
 
-function ResultCard({ tallies, onReset }) {
-  const sorted = Object.entries(tallies).sort((a, b) => b[1] - a[1]);
-  const topKey = sorted[0][0];
+function ResultCard({
+  tallies,
+  onReset,
+}: {
+  tallies: Record<keyof typeof ARCH_TYPES, number>;
+  onReset: () => void;
+}) {
+  type ArchKey = keyof typeof ARCH_TYPES;
+  const sorted = (Object.entries(tallies) as [ArchKey, number][]).sort(
+    (a, b) => b[1] - a[1]
+  );
+  const topKey: ArchKey = sorted[0][0];
   const winner = ARCH_TYPES[topKey];
 
   // Mensaje adicional si hubo empate
@@ -192,14 +212,16 @@ function ResultCard({ tallies, onReset }) {
       )}
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
-        {Object.entries(tallies).map(([k, v]) => (
-          <span
-            key={k}
-            className="rounded-full border border-neutral-800 bg-black/40 px-3 py-1 text-xs text-neutral-300"
-          >
-            {ARCH_TYPES[k].title}: {v}
-          </span>
-        ))}
+        {(Object.entries(tallies) as [keyof typeof ARCH_TYPES, number][]).map(
+          ([k, v]) => (
+            <span
+              key={k}
+              className="rounded-full border border-neutral-800 bg-black/40 px-3 py-1 text-xs text-neutral-300"
+            >
+              {ARCH_TYPES[k].title}: {v}
+            </span>
+          )
+        )}
       </div>
 
       <button
@@ -214,10 +236,15 @@ function ResultCard({ tallies, onReset }) {
 
 export function ImbencibleQuiz() {
   const total = QUESTIONS.length;
+  type ArchKey = keyof typeof ARCH_TYPES;
   const [step, setStep] = React.useState(0);
-  const [tallies, setTallies] = React.useState({ ARQ: 0, PRO: 0, ALG: 0 });
+  const [tallies, setTallies] = React.useState<Record<ArchKey, number>>({
+    ARQ: 0,
+    PRO: 0,
+    ALG: 0,
+  });
 
-  const handleAnswer = (scoreKey) => {
+  const handleAnswer = (scoreKey: ArchKey) => {
     setTallies((t) => ({ ...t, [scoreKey]: t[scoreKey] + 1 }));
     setStep((s) => s + 1);
   };
