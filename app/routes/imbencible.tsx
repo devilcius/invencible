@@ -98,7 +98,7 @@ export default function ImbencibleLanding() {
   ];
 
   const TAGLINE_PRIMARY =
-    "Se le ha visto circular por Canillejas con un carrito lleno de hits improbables.";
+    "Se le ha visto circular por Canillejas empujando un carrito lleno de hits improbables.";
   const TAGLINE_SECONDARY =
     "Pincha lo que otros olvidaron, mezcla lo que pocos se atrevieron y despacha como si el algoritmo no existiera.";
 

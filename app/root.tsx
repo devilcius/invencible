@@ -27,16 +27,16 @@ export const links: Route.LinksFunction = () => [
 
 // Default meta (root-level). Route pages can override with their own `export const meta = () => [...]`
 export const meta: Route.MetaFunction = () => [
-  { title: "DJ Imbencible — Que el algoritmo se rinda" },
+  { title: "DJ Imbencible — La némesis del algoritmo" },
   {
     name: "description",
     content:
-      "DJ Imbencible: mitad iluminado, mitad profeta del error. El buen gusto no ha muerto: solo ha estado bailando en lugares extraños.",
+      "Se le ha visto circular por Canillejas empujando un carrito lleno de hits improbables.",
   },
 
   // Open Graph
   { property: "og:type", content: "website" },
-  { property: "og:title", content: "DJ Imbencible — Que el algoritmo se rinda" },
+  { property: "og:title", content: "DJ Imbencible — La némesis del algoritmo" },
   {
     property: "og:description",
     content:
@@ -46,7 +46,7 @@ export const meta: Route.MetaFunction = () => [
 
   // Twitter
   { name: "twitter:card", content: "summary_large_image" },
-  { name: "twitter:title", content: "DJ Imbencible — Que el algoritmo se rinda" },
+  { name: "twitter:title", content: "DJ Imbencible — La némesis del algoritmo" },
   {
     name: "twitter:description",
     content:
@@ -55,7 +55,7 @@ export const meta: Route.MetaFunction = () => [
   { name: "twitter:image", content: "https://imbencible.com/imbencible-dj.jpg" },
 
   // Extras
-  { name: "author", content: "DJ Imbencible (presuntamente humano)" },
+  { name: "author", content: "DJ Imbencible (también conocido como Ben Cible)" },
   {
     name: "keywords",
     content:
