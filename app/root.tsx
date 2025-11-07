@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 
+// Links (fonts + favicon)
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -21,11 +22,50 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  { rel: "icon", href: "/favicon.ico" },
+];
+
+// Default meta (root-level). Route pages can override with their own `export const meta = () => [...]`
+export const meta: Route.MetaFunction = () => [
+  { title: "DJ Imbencible — Never Mind the Algorithms" },
+  {
+    name: "description",
+    content:
+      "DJ Imbencible: half enlightened, half prophet of error. Good taste isn’t dead — it’s just been dancing in strange places.",
+  },
+
+  // Open Graph
+  { property: "og:type", content: "website" },
+  { property: "og:title", content: "DJ Imbencible — Never Mind the Algorithms" },
+  {
+    property: "og:description",
+    content:
+      "Power pop, indie rock, northern soul, new wave and other improbable hits. Pincha lo que others forgot.",
+  },
+  { property: "og:image", content: "/imbencible-dj.jpg" },
+
+  // Twitter
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:title", content: "DJ Imbencible — Never Mind the Algorithms" },
+  {
+    name: "twitter:description",
+    content:
+      "Half enlightened, half prophet of error. Good taste never died — it just changed BPM.",
+  },
+  { name: "twitter:image", content: "/imbencible-dj.jpg" },
+
+  // Extras
+  { name: "author", content: "DJ Imbencible (allegedly human)" },
+  {
+    name: "keywords",
+    content:
+      "DJ Imbencible, power pop, indie rock, northern soul, new wave, shoegaze, garage rock revival, C86, twee pop",
+  },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-neutral-950 text-neutral-100">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
